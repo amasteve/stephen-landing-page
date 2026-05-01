@@ -1,42 +1,702 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stephen Landing Page</title>
-    <style>
-        .social-links {
-            list-style-type: none;
-            padding: 0;
-        }
-        .social-links li {
-            display: inline;
-            margin-right: 10px;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Stephen Egar Ayim — Grassroots Development Advocate</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --green: #1a6b3c;
+    --green-light: #2d9e5f;
+    --green-pale: #e8f5ee;
+    --gold: #c9922a;
+    --gold-light: #f0c96e;
+    --ink: #0f1a14;
+    --ink-mid: #2e3d35;
+    --mist: #f4f7f5;
+    --white: #ffffff;
+    --border: rgba(26,107,60,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--mist);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(244,247,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--green); letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-mid);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6% 6% 6% 8%;
+    position: relative; z-index: 2;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--green-pale); border: 1px solid var(--border);
+    border-radius: 2rem; padding: 0.35rem 1rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 2rem; width: fit-content;
+  }
+  .hero-tag::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green-light); }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .hero-name em { color: var(--green); font-style: normal; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--ink-mid); font-weight: 300;
+    line-height: 1.7; max-width: 440px; margin-bottom: 2.5rem;
+    border-left: 3px solid var(--gold); padding-left: 1rem;
+  }
+  .hero-stats {
+    display: flex; gap: 2rem; margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .stat { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--green);
+  }
+  .stat-label {
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-mid); font-weight: 500;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 0.3rem;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 2px solid var(--green); color: var(--green);
+    padding: 0.85rem 2rem; border-radius: 0.3rem;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--green); color: var(--white); }
+
+  .hero-right {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    background: var(--green); overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 20%, rgba(201,146,42,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(45,158,95,0.3) 0%, transparent 60%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.07;
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--white) 0px, var(--white) 1px,
+      transparent 1px, transparent 20px
+    );
+  }
+  .hero-card {
+    position: relative; z-index: 2;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 1rem; padding: 2.5rem;
+    text-align: center; color: var(--white);
+    max-width: 320px;
+  }
+  .hero-avatar {
+    width: 110px; height: 110px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 3px solid var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.8rem; margin: 0 auto 1.2rem;
+  }
+  .hero-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .hero-card-title {
+    font-size: 0.78rem; opacity: 0.75; letter-spacing: 0.07em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .hero-badges { display: flex; flex-direction: column; gap: 0.6rem; }
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 0.5rem; padding: 0.6rem 1rem;
+    font-size: 0.78rem; text-align: left;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-light); flex-shrink: 0; }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 8%; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700; color: var(--ink); line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-title span { color: var(--green); }
+  .section-desc {
+    font-size: 1rem; color: var(--ink-mid); max-width: 580px;
+    line-height: 1.75; font-weight: 300;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 5rem; align-items: start; margin-top: 3.5rem;
+  }
+  .about-roles { display: flex; flex-direction: column; gap: 1rem; }
+  .role-card {
+    border: 1px solid var(--border); border-radius: 0.75rem;
+    padding: 1.3rem 1.5rem; transition: all 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .role-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; background: var(--green);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.25s;
+  }
+  .role-card:hover { border-color: var(--green); box-shadow: 0 4px 20px rgba(26,107,60,0.1); }
+  .role-card:hover::before { transform: scaleY(1); }
+  .role-org {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 0.3rem;
+  }
+  .role-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem;
+  }
+  .role-location { font-size: 0.78rem; color: var(--ink-mid); }
+
+  .about-bio { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-bio p { font-size: 0.95rem; line-height: 1.8; color: var(--ink-mid); font-weight: 300; }
+  .about-bio p strong { color: var(--ink); font-weight: 500; }
+  .quote-block {
+    border-left: 4px solid var(--gold); padding: 1rem 1.5rem;
+    background: var(--green-pale); border-radius: 0 0.5rem 0.5rem 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-style: italic; color: var(--green);
+    line-height: 1.6;
+  }
+
+  /* ── EXPERTISE ── */
+  #expertise { background: var(--mist); }
+  .expertise-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+  .expertise-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 1rem; padding: 2rem;
+    transition: all 0.25s; cursor: default;
+  }
+  .expertise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(26,107,60,0.12);
+    border-color: var(--green);
+  }
+  .expertise-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+    width: 54px; height: 54px; border-radius: 0.75rem;
+    background: var(--green-pale); display: flex; align-items: center; justify-content: center;
+  }
+  .expertise-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700; color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .expertise-desc { font-size: 0.85rem; line-height: 1.7; color: var(--ink-mid); font-weight: 300; }
+
+  /* ── PLATFORMS ── */
+  #platforms { background: var(--ink); }
+  #platforms .section-label { color: var(--gold-light); }
+  #platforms .section-title { color: var(--white); }
+  #platforms .section-desc { color: rgba(255,255,255,0.6); }
+  .platforms-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem; margin-top: 3.5rem;
+  }
+  .platform-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem; padding: 2.5rem;
+    transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .platform-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green-light), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .platform-card:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
+  .platform-card:hover::after { transform: scaleX(1); }
+  .platform-chip {
+    display: inline-block; padding: 0.3rem 0.8rem;
+    border-radius: 2rem; font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 500; margin-bottom: 1.2rem;
+    background: rgba(45,158,95,0.2); color: var(--green-light);
+    border: 1px solid rgba(45,158,95,0.3);
+  }
+  .platform-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem;
+  }
+  .platform-role {
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 1rem;
+  }
+  .platform-desc { font-size: 0.88rem; line-height: 1.75; color: rgba(255,255,255,0.55); margin-bottom: 1.5rem; }
+  .platform-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .platform-tag {
+    font-size: 0.7rem; padding: 0.25rem 0.7rem;
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 2rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .platform-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    color: var(--green-light); font-size: 0.82rem; font-weight: 500;
+    text-decoration: none; margin-top: 1rem;
+    transition: gap 0.2s;
+  }
+  .platform-link:hover { gap: 0.7rem; }
+
+  /* ── NYCN / COMMUNITY ── */
+  #community { background: var(--green-pale); }
+  .community-inner {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: 4rem; align-items: center; margin-top: 3rem;
+  }
+  .community-text p {
+    font-size: 0.95rem; line-height: 1.8; color: var(--ink-mid);
+    font-weight: 300; margin-bottom: 1rem;
+  }
+  .community-highlights {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .highlight {
+    background: var(--white); border-radius: 0.75rem;
+    padding: 1.2rem 1.5rem; border: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .highlight-icon {
+    width: 40px; height: 40px; border-radius: 0.5rem;
+    background: var(--green-pale); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .highlight-body { display: flex; flex-direction: column; }
+  .highlight-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--gold); font-weight: 500; margin-bottom: 0.2rem;
+  }
+  .highlight-text { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.5; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--white); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start; margin-top: 3.5rem;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.1rem 1.3rem; border: 1px solid var(--border);
+    border-radius: 0.75rem; text-decoration: none;
+    transition: all 0.2s; color: var(--ink);
+  }
+  .contact-item:hover { border-color: var(--green); background: var(--green-pale); }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 0.5rem;
+    background: var(--green-pale); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mid); }
+  .contact-value { font-size: 0.9rem; font-weight: 500; color: var(--ink); }
+
+  .contact-cta {
+    background: var(--green); border-radius: 1rem; padding: 2.5rem;
+    color: var(--white);
+  }
+  .contact-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700; margin-bottom: 0.8rem;
+  }
+  .contact-cta p {
+    font-size: 0.9rem; opacity: 0.8; line-height: 1.7; margin-bottom: 1.5rem;
+  }
+  .btn-gold {
+    background: var(--gold); color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 0.3rem;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; display: inline-block; transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); color: var(--ink); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.45);
+    text-align: center; padding: 2rem 8%;
+    font-size: 0.78rem; letter-spacing: 0.05em;
+  }
+  footer a { color: var(--green-light); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    opacity: 0; animation: fadeUp 0.7s ease forwards;
+  }
+  .hero-tag { animation-delay: 0.1s; }
+  .hero-name { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .hero-stats { animation-delay: 0.4s; }
+  .hero-ctas { animation-delay: 0.5s; }
+  .hero-card { animation: fadeUp 0.8s ease 0.3s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 380px; }
+    .about-grid, .platforms-grid, .contact-grid, .community-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    nav { padding: 1rem 5%; }
+    .nav-links { gap: 1.2rem; }
+  }
+  @media (max-width: 600px) {
+    .expertise-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 5%; }
+    .nav-links { display: none; }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Stephen's Landing Page</h1>
-    </header>
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Email: amasteveintegratedservices@gmail.com</p>
-        <ul class="social-links">
-            <li><a href="https://twitter.com/Amasteve_int 🌐</a></li>
-            <li><a href="https://instagram.com/stephen.ayim_e 📷</a></li>
-            <li><a href="https://linkedin.com/in/stephen-ayim-27a34614a">LinkedIn 🔗</a></li>
-            <li><a href="https://facebook.com/ayim.stephen 👍</a></li>
-        </ul>
-    </section>
-    <footer>
-        <h2>Footer</h2>
-        <ul class="social-links">
-            <li><a href="https://twitter.com/Amasteve_int">Twitter 🌐</a></li>
-            <li><a href="https://instagram.com/stephen.ayim_e 📷</a></li>
-            <li><a href="https:linkedin.com/in/stephen-ayim-27a34614a" >LinkedIn 🔗</a></li>
-            <li><a href="https://facebook.com/ayim.stephen 👍</a></li>
-        </ul>
-    </footer>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Stephen Egar Ayim</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Cross River State · Nigeria</div>
+    <h1 class="hero-name">Stephen<br><em>Egar Ayim</em></h1>
+    <p class="hero-sub">
+      Grassroots development advocate, media strategist, and community mobilizer — bridging leadership and the people through inclusion, advocacy, and digital innovation.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">2+</span>
+        <span class="stat-label">Platforms Founded</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Ward Served</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">18</span>
+        <span class="stat-label">LGAs in Focus</span>
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get In Touch →</a>
+      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" class="btn-outline">Visit Ogoja Breaking News</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-card">
+      <div class="hero-avatar">🧑🏾</div>
+      <div class="hero-card-name">Stephen Egar Ayim</div>
+      <div class="hero-card-title">Rural Development Officer · Media Publisher · Youth Leader</div>
+      <div class="hero-badges">
+        <div class="badge"><span class="badge-dot"></span>WRDO — Ekajuk Ward 1, Ogoja LGA</div>
+        <div class="badge"><span class="badge-dot"></span>Treasurer, NYCN Ogoja Chapter</div>
+        <div class="badge"><span class="badge-dot"></span>Founder, Amasteve Integrated Services</div>
+        <div class="badge"><span class="badge-dot"></span>Executive Publisher, Ogoja Breaking News</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// Who I Am</div>
+  <h2 class="section-title">A Voice for <span>Grassroots</span> Nigeria</h2>
+  <div class="about-grid">
+    <div class="about-roles">
+      <div class="role-card">
+        <div class="role-org">Cross River State Government</div>
+        <div class="role-title">Ward Rural Development Officer</div>
+        <div class="role-location">Ekajuk Ward 1 · Ogoja Local Government Area</div>
+      </div>
+      <div class="role-card">
+        <div class="role-org">National Youth Council of Nigeria</div>
+        <div class="role-title">Treasurer, NYCN Ogoja Chapter</div>
+        <div class="role-location">Ogoja LGA · Cross River State</div>
+      </div>
+      <div class="role-card">
+        <div class="role-org">Amasteve Integrated Services</div>
+        <div class="role-title">Founder & Chief Executive Officer</div>
+        <div class="role-location">Ogoja · Cross River State</div>
+      </div>
+      <div class="role-card">
+        <div class="role-org">Ogoja Breaking News</div>
+        <div class="role-title">Executive Publisher</div>
+        <div class="role-location">Digital Media Platform · Northern Cross River</div>
+      </div>
+    </div>
+    <div class="about-bio">
+      <p>
+        Stephen Egar Ayim is committed to advancing <strong>inclusive growth and civic engagement</strong> in Cross River State. As Ward Rural Development Officer for Ekajuk Ward 1, he plays an active role in community sensitization, policy communication, and grassroots development initiatives that improve the welfare of local residents.
+      </p>
+      <p>
+        As Treasurer of the National Youth Council of Nigeria (NYCN), Ogoja Chapter, he advocates for <strong>youth empowerment, representation, and civic participation</strong> across the Northern Senatorial District of Cross River State.
+      </p>
+      <p>
+        As Founder of <strong>Amasteve Integrated Services</strong> and Executive Publisher of <strong>Ogoja Breaking News</strong>, he drives digital innovation, community storytelling, and socio-economic development across the region.
+      </p>
+      <div class="quote-block">
+        "Bridging the gap between leadership and the people — through effective information dissemination and practical, development-focused advocacy."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-label">// What I Do</div>
+  <h2 class="section-title">Areas of <span>Expertise</span></h2>
+  <p class="section-desc">From digital media to grassroots mobilization — a full-spectrum approach to community development and public communication.</p>
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <div class="expertise-icon">📡</div>
+      <div class="expertise-title">Digital Media & Storytelling</div>
+      <div class="expertise-desc">Harnessing digital platforms to tell community stories, drive engagement, and bring local narratives to wider audiences across Cross River State.</div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🌱</div>
+      <div class="expertise-title">Grassroots Development</div>
+      <div class="expertise-desc">Implementing development initiatives at the ward level, connecting communities to policy opportunities, government programs, and available resources.</div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">📢</div>
+      <div class="expertise-title">Public Communication</div>
+      <div class="expertise-desc">Policy communication and community sensitization designed to close the gap between government decisions and the citizens they affect.</div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🤝</div>
+      <div class="expertise-title">Community Mobilization</div>
+      <div class="expertise-desc">Organizing and rallying communities around civic participation, social welfare, and inclusive governance for sustainable impact.</div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🎯</div>
+      <div class="expertise-title">Youth Empowerment</div>
+      <div class="expertise-desc">Creating platforms and opportunities that equip young people in Ogoja and beyond with tools for economic and civic engagement.</div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🏷️</div>
+      <div class="expertise-title">Branding & Strategy</div>
+      <div class="expertise-desc">Building and positioning organizations and initiatives for credibility, sustainable reach, and long-term development impact.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section id="platforms">
+  <div class="section-label">// My Platforms</div>
+  <h2 class="section-title">Vehicles for <span style="color:var(--gold-light)">Change</span></h2>
+  <p class="section-desc">Two mission-driven platforms working together to advance development, transparency, and community empowerment in Cross River State.</p>
+  <div class="platforms-grid">
+    <div class="platform-card">
+      <div class="platform-chip">Founded · Active</div>
+      <div class="platform-name">Amasteve Integrated Services</div>
+      <div class="platform-role">Founder & Chief Executive Officer</div>
+      <div class="platform-desc">
+        A multi-faceted enterprise driving digital innovation, capacity building, branding, and socio-economic development solutions for individuals, communities, and organizations across Cross River State.
+      </div>
+      <div class="platform-tags">
+        <span class="platform-tag">Digital Innovation</span>
+        <span class="platform-tag">Capacity Building</span>
+        <span class="platform-tag">Branding</span>
+        <span class="platform-tag">Community Development</span>
+      </div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-chip">Media · Publishing</div>
+      <div class="platform-name">Ogoja Breaking News</div>
+      <div class="platform-role">Executive Publisher</div>
+      <div class="platform-desc">
+        A community-focused digital news platform delivering timely, accurate, and locally relevant information to citizens of Ogoja and beyond — promoting transparency, accountability, and civic awareness.
+      </div>
+      <div class="platform-tags">
+        <span class="platform-tag">Civic Journalism</span>
+        <span class="platform-tag">Rural Development</span>
+        <span class="platform-tag">Government Monitoring</span>
+        <span class="platform-tag">Youth News</span>
+      </div>
+      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" class="platform-link">Visit Platform →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY / NYCN -->
+<section id="community">
+  <div class="section-label">// Civic Engagement</div>
+  <h2 class="section-title">Serving the <span>Community</span></h2>
+  <div class="community-inner">
+    <div class="community-text">
+      <p>
+        Beyond his professional roles, Stephen is deeply committed to youth development and civic participation in Ogoja. As <strong>Treasurer of the National Youth Council of Nigeria (NYCN), Ogoja Chapter</strong>, he manages resources and advocates for meaningful youth inclusion in governance and development processes.
+      </p>
+      <p>
+        His work with the NYCN has positioned him as a credible voice for young people in the Northern Senatorial District — a bridge between youth aspirations and institutional decision-making.
+      </p>
+      <p>
+        Through consistent community engagement, policy monitoring, and youth-focused advocacy, Stephen continues to demonstrate that grassroots leadership can drive real and lasting change.
+      </p>
+    </div>
+    <div class="community-highlights">
+      <div class="highlight">
+        <div class="highlight-icon">🏛️</div>
+        <div class="highlight-body">
+          <div class="highlight-label">National Youth Council of Nigeria</div>
+          <div class="highlight-text">Treasurer, NYCN Ogoja LGA Chapter — managing resources and advocating for youth representation.</div>
+        </div>
+      </div>
+      <div class="highlight">
+        <div class="highlight-icon">🌾</div>
+        <div class="highlight-body">
+          <div class="highlight-label">Ward Rural Development</div>
+          <div class="highlight-text">Active in community sensitization and policy communication for Ekajuk Ward 1 residents.</div>
+        </div>
+      </div>
+      <div class="highlight">
+        <div class="highlight-icon">📰</div>
+        <div class="highlight-body">
+          <div class="highlight-label">Development Journalism</div>
+          <div class="highlight-text">Covering government projects, rural infrastructure, and civic affairs across all 18 LGAs.</div>
+        </div>
+      </div>
+      <div class="highlight">
+        <div class="highlight-icon">🎤</div>
+        <div class="highlight-body">
+          <div class="highlight-label">Public Advocacy</div>
+          <div class="highlight-text">Amplifying grassroots voices on issues of governance, welfare, and community development.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// Get In Touch</div>
+  <h2 class="section-title">Let's Build <span>Together</span></h2>
+  <p class="section-desc">Whether it's a partnership, media enquiry, community project, or civic collaboration — Stephen is open to connecting with like-minded leaders and organizations.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <a href="mailto:amastevefoundation@gmail.com" class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">amastevefoundation@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" class="contact-item">
+        <div class="contact-icon">📰</div>
+        <div>
+          <div class="contact-label">Media Platform</div>
+          <div class="contact-value">Ogoja Breaking News</div>
+        </div>
+      </a>
+      <a href="https://amasteve.github.io/stephen-landing-page/" target="_blank" class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <div class="contact-label">Portfolio</div>
+          <div class="contact-value">amasteve.github.io</div>
+        </div>
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Ogoja LGA · Cross River State, Nigeria</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <h3>Ready to collaborate?</h3>
+      <p>From rural development projects to media partnerships and community campaigns — reach out and let's create impact together for the people of Cross River State.</p>
+      <a href="mailto:amastevefoundation@gmail.com" class="btn-gold">Send a Message →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Stephen Egar Ayim · Ogoja LGA, Cross River State, Nigeria · Built with purpose · <a href="https://ogojabreakingnews.blogspot.com/" target="_blank">Ogoja Breaking News</a></p>
+</footer>
+
 </body>
 </html>
