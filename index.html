@@ -185,13 +185,32 @@ footer {
 <!-- MEDIA -->
 <section id="media">
   <h2>Latest Updates</h2>
-
-  <div class="card">Government Opportunities You Should Know</div>
-  <div class="card">Development Updates in Cross River</div>
-  <div class="card">Youth Policy Insights</div>
-
+  <div id="blogPosts"></div>
 </section>
 
+<script>
+fetch("https://ogojabreakingnews.blogspot.com/feeds/posts/default?alt=json")
+.then(res => res.json())
+.then(data => {
+  let posts = data.feed.entry.slice(0,5);
+  let output = "";
+
+  posts.forEach(post => {
+    let title = post.title.$t;
+    let link = post.link.find(l => l.rel === "alternate").href;
+
+    output += `
+      <div class="card">
+        <a href="${link}" target="_blank" style="color:gold; text-decoration:none;">
+          ${title}
+        </a>
+      </div>
+    `;
+  });
+
+  document.getElementById("blogPosts").innerHTML = output;
+});
+</script>
 <!-- CONTACT -->
 <section id="contact">
   <h2>Let’s Work Together</h2>
