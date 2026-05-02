@@ -3,8 +3,34 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Stephen Egar Ayim — Grassroots Development Advocate</title>
+
+<!-- FIX 05: Keyword-rich title -->
+<title>Stephen Egar Ayim | Grassroots Development Advocate · Ogoja, Cross River State</title>
+
+<!-- FIX 01: Meta description -->
+<meta name="description" content="Stephen Egar Ayim — grassroots development advocate, Ward Rural Development Officer for Ekajuk Ward 1, Treasurer of NYCN Ogoja Chapter, media publisher and CEO of Amasteve Integrated Services in Ogoja, Cross River State, Nigeria." />
+
+<!-- FIX 02: Open Graph / Social Share Tags -->
+<meta property="og:type"        content="website" />
+<meta property="og:site_name"   content="Stephen Egar Ayim" />
+<meta property="og:url"         content="https://amasteve.github.io/stephen-landing-page/" />
+<meta property="og:title"       content="Stephen Egar Ayim — Grassroots Development Advocate" />
+<meta property="og:description" content="Ward Rural Development Officer, NYCN Treasurer, media publisher and CEO of Amasteve Integrated Services — Ogoja, Cross River State." />
+<meta property="og:image"       content="https://amasteve.github.io/stephen-landing-page/og-image.jpg" />
+<!-- Twitter / X card -->
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:title"       content="Stephen Egar Ayim — Grassroots Development Advocate" />
+<meta name="twitter:description" content="Ward Rural Development Officer, NYCN Treasurer, and media publisher — Ogoja, Cross River State." />
+<meta name="twitter:image"       content="https://amasteve.github.io/stephen-landing-page/og-image.jpg" />
+
+<!-- FIX 13: Favicon (emoji — no file needed) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>" />
+
+<!-- FIX 06: Preconnect before Google Fonts (reduces render-blocking) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
 <style>
   :root {
     --green: #1a6b3c;
@@ -51,6 +77,25 @@
     text-decoration: none; transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--green); }
+
+  /* FIX 03: Hamburger button */
+  .nav-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
 
   /* ── HERO ── */
   #hero {
@@ -122,7 +167,7 @@
   .hero-right::before {
     content: '';
     position: absolute; inset: 0;
-    background: 
+    background:
       radial-gradient(ellipse at 30% 20%, rgba(201,146,42,0.25) 0%, transparent 60%),
       radial-gradient(ellipse at 70% 80%, rgba(45,158,95,0.3) 0%, transparent 60%);
   }
@@ -143,10 +188,12 @@
     text-align: center; color: var(--white);
     max-width: 320px;
   }
+  /* FIX 04 & 10: Avatar with overflow hidden to clip photo to circle */
   .hero-avatar {
     width: 110px; height: 110px; border-radius: 50%;
     background: rgba(255,255,255,0.15);
     border: 3px solid var(--gold-light);
+    overflow: hidden;
     display: flex; align-items: center; justify-content: center;
     font-size: 2.8rem; margin: 0 auto 1.2rem;
   }
@@ -406,6 +453,21 @@
   .hero-ctas { animation-delay: 0.5s; }
   .hero-card { animation: fadeUp 0.8s ease 0.3s both; }
 
+  /* FIX 12: Focus-visible styles for keyboard accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  .btn-primary:focus-visible,
+  .btn-outline:focus-visible,
+  .btn-gold:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  a:focus:not(:focus-visible),
+  button:focus:not(:focus-visible) {
+    outline: none;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     #hero { grid-template-columns: 1fr; }
@@ -418,22 +480,58 @@
   @media (max-width: 600px) {
     .expertise-grid { grid-template-columns: 1fr; }
     section { padding: 4rem 5%; }
-    .nav-links { display: none; }
+    /* FIX 03: Show hamburger, hide nav links by default on mobile */
+    .nav-burger { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 60px; left: 0; right: 0;
+      background: rgba(244,247,245,0.97);
+      flex-direction: column;
+      padding: 1rem 5%;
+      border-bottom: 1px solid var(--border);
+      gap: 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); }
+    .nav-links li:last-child { border-bottom: none; }
+  }
+
+  /* FIX 11: Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-left > * {
+      animation: none;
+      opacity: 1;
+    }
+    .hero-card {
+      animation: none;
+      opacity: 1;
+    }
+    * {
+      transition-duration: 0.01ms !important;
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAV — FIX 03: Hamburger menu added -->
 <nav>
   <div class="nav-logo">Stephen Egar Ayim</div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#expertise">Expertise</a></li>
     <li><a href="#platforms">Platforms</a></li>
     <li><a href="#community">Community</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-burger" id="nav-burger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -460,13 +558,19 @@
     </div>
     <div class="hero-ctas">
       <a href="#contact" class="btn-primary">Get In Touch →</a>
-      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" class="btn-outline">Visit Ogoja Breaking News</a>
+      <!-- FIX 07: Added rel="noopener noreferrer" -->
+      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" rel="noopener noreferrer" class="btn-outline">Visit Ogoja Breaking News</a>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-pattern"></div>
     <div class="hero-card">
-      <div class="hero-avatar">🧑🏾</div>
+      <!-- FIX 04: Avatar aria attributes for screen readers -->
+      <div class="hero-avatar" role="img" aria-label="Stephen Egar Ayim">
+        <span aria-hidden="true">🧑🏾</span>
+        <!-- To use a real photo instead, replace the line above with:
+             <img src="stephen.jpg" alt="Stephen Egar Ayim" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /> -->
+      </div>
       <div class="hero-card-name">Stephen Egar Ayim</div>
       <div class="hero-card-title">Rural Development Officer · Media Publisher · Youth Leader</div>
       <div class="hero-badges">
@@ -595,7 +699,8 @@
         <span class="platform-tag">Government Monitoring</span>
         <span class="platform-tag">Youth News</span>
       </div>
-      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" class="platform-link">Visit Platform →</a>
+      <!-- FIX 07: rel="noopener noreferrer" added -->
+      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" rel="noopener noreferrer" class="platform-link">Visit Platform →</a>
     </div>
   </div>
 </section>
@@ -663,18 +768,20 @@
           <div class="contact-value">amastevefoundation@gmail.com</div>
         </div>
       </a>
-      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" class="contact-item">
+      <!-- FIX 07: rel="noopener noreferrer" added -->
+      <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" rel="noopener noreferrer" class="contact-item">
         <div class="contact-icon">📰</div>
         <div>
           <div class="contact-label">Media Platform</div>
           <div class="contact-value">Ogoja Breaking News</div>
         </div>
       </a>
-      <a href="https://amasteve.github.io/stephen-landing-page/" target="_blank" class="contact-item">
-        <div class="contact-icon">🌐</div>
+      <!-- FIX 08: Replaced self-referencing portfolio link with LinkedIn placeholder -->
+      <a href="https://linkedin.com/in/stephen-ayim-27a34614a" target="_blank" rel="noopener noreferrer" class="contact-item">
+        <div class="contact-icon">💼</div>
         <div>
-          <div class="contact-label">Portfolio</div>
-          <div class="contact-value">amasteve.github.io</div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">Stephen Egar Ayim</div>
         </div>
       </a>
       <div class="contact-item" style="cursor:default;">
@@ -695,8 +802,26 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Stephen Egar Ayim · Ogoja LGA, Cross River State, Nigeria · Built with purpose · <a href="https://ogojabreakingnews.blogspot.com/" target="_blank">Ogoja Breaking News</a></p>
+  <!-- FIX 07: rel="noopener noreferrer" added -->
+  <p>© 2026 Stephen Egar Ayim · Ogoja LGA, Cross River State, Nigeria · Built with purpose · <a href="https://ogojabreakingnews.blogspot.com/" target="_blank" rel="noopener noreferrer">Ogoja Breaking News</a></p>
 </footer>
+
+<!-- FIX 03: Mobile nav toggle script -->
+<script>
+  function toggleNav() {
+    const links = document.getElementById('nav-links');
+    const burger = document.getElementById('nav-burger');
+    const isOpen = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  }
+  // Close menu when any nav link is clicked
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      document.getElementById('nav-links').classList.remove('open');
+      document.getElementById('nav-burger').setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 
 </body>
 </html>
